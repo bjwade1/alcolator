@@ -7,12 +7,23 @@
 //
 
 #import "BLCWhiskeyViewController.h"
+#import "ViewController.h"
+
 
 @interface BLCWhiskeyViewController ()
 
 @end
 
 @implementation BLCWhiskeyViewController
+
+-(void) viewDidLoad{
+    
+    [super viewDidLoad];
+    
+    int *sliderInt = (int) [self.beerCountSlider value];
+    NSString *thisTitle = @"Whiskey";
+    self.title = [NSString stringWithFormat: NSLocalizedString(@"%@ %u glasses", "Title with current tab and number of glasses"), thisTitle, sliderInt];
+}
 
 - (void) buttonPressed:(UIButton *)sender;
 {
@@ -51,6 +62,8 @@
     
     self.resultLabel.text = resultText;
 }
+
+
 /*
 #pragma mark - Navigation
 

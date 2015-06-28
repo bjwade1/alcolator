@@ -8,6 +8,6 @@
 
 #import "ViewController.h"
 
-@interface MainMenuViewController : ViewController
+@interface BLCMainMenuViewController : ViewController
 
 @end
