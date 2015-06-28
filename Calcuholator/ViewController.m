@@ -76,6 +76,11 @@
     //Get rid of maximum number of lines for label OR ELSE
     self.resultLabel.numberOfLines = 0;
     
+    int *sliderInt = (int) [self.beerCountSlider value];
+    NSString *thisTitle = @"Wine";
+    self.title = [NSString stringWithFormat: NSLocalizedString(@"%@ %u glasses", "Title with current tab and number of glasses"), thisTitle, sliderInt];
+
+    
 }
 -(void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
@@ -116,9 +121,8 @@
 - (void)sliderValueDidchange:(UISlider*)sender {
     NSLog(@"Slider value changed to %f", sender.value);
     [self.beerPercentTextField resignFirstResponder];
-
-    float sliderVal = sender.value;
-    NSInteger *sliderInt = (int) sliderVal;
+    
+    int *sliderInt = (int) [self.beerCountSlider value];
     NSString *sliderString = [NSString stringWithFormat:@"%u", sliderInt];
     
     self.sliderLabel.text = sliderString;
