@@ -9,9 +9,8 @@
 #import "AppDelegate.h"
 #import "ViewController.h"
 #import "BLCWhiskeyViewController.h"
-#import "BLCMainMenuViewController.h"
 
-@interface AppDelegate ()
+@interface AppDelegate () <UITabBarControllerDelegate>
 
 @end
 
@@ -24,11 +23,16 @@
     
     // Override point for customization after application launch
     
-    BLCMainMenuViewController *mainMenuViewController = [[BLCMainMenuViewController alloc] init];
+    ViewController *wineVC = [[ViewController alloc] init];
+    BLCWhiskeyViewController *whiskeyVC = [[BLCWhiskeyViewController alloc] init];
+    UITabBarController *tabBarVC = [[UITabBarController alloc] init];
     
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:mainMenuViewController];
+    tabBarVC.delegate = self;
     
-    self.window.rootViewController = navigationController;
+    //Array that holds view controllers for tab bar - property of UITabBarControllers
+    tabBarVC.viewControllers = @[wineVC, whiskeyVC];
+    
+    self.window.rootViewController = tabBarVC;
     
     [self.window makeKeyAndVisible];
     
@@ -56,5 +60,13 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+- (void) tabBarController: (UITabBarController *) tabBarController didSelectViewController: (UIViewController *) viewController {
+    
+    NSString *thisVC = tabBarController.selectedViewController;
+    NSLog(@"New view controller selected: %@" ,thisVC);     
+    
+}
+
 
 @end
