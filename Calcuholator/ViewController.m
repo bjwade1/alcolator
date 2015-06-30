@@ -18,6 +18,19 @@
 
 @implementation ViewController
 
+- (instancetype) init {
+    
+    self = [super init];
+    
+    if (self) {
+        self.title = NSLocalizedString(@"Wine", "Wine");
+    }
+    
+    [self.tabBarItem setTitlePositionAdjustment:UIOffsetMake(0, -18)];
+    
+    return self;
+}
+
 - (void)loadView{
     
     // Allocating and initializing the all-encompassing view
@@ -76,11 +89,7 @@
     //Get rid of maximum number of lines for label OR ELSE
     self.resultLabel.numberOfLines = 0;
     
-    int *sliderInt = (int) [self.beerCountSlider value];
-    NSString *thisTitle = @"Wine";
-    self.title = [NSString stringWithFormat: NSLocalizedString(@"%@ %u glasses", "Title with current tab and number of glasses"), thisTitle, sliderInt];
-
-    
+    self.view.backgroundColor = [UIColor colorWithRed:0.741 green:0.925 blue:0.714 alpha:1];
 }
 -(void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
@@ -122,10 +131,10 @@
     NSLog(@"Slider value changed to %f", sender.value);
     [self.beerPercentTextField resignFirstResponder];
     
-    int *sliderInt = (int) [self.beerCountSlider value];
-    NSString *sliderString = [NSString stringWithFormat:@"%u", sliderInt];
-    
-    self.sliderLabel.text = sliderString;
+    //self.title = [NSString stringWithFormat:NSLocalizedString(@"%@ %u glasses", @"Current tab with slider value"), self.title, numberOfWineGlassesForEquivalentAlcoholAmount];
+
+    [self.tabBarItem setBadgeValue:[NSString stringWithFormat:@" %d", (int) sender.value]];
+
 }
 
 
@@ -173,7 +182,5 @@
 - (void)tapGestureDidFire:(id)sender {
     [self.beerPercentTextField resignFirstResponder];
 }
-
-
 
 @end

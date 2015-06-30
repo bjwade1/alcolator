@@ -16,13 +16,22 @@
 
 @implementation BLCWhiskeyViewController
 
+- (instancetype) init {
+    
+    self = [super init];
+    
+    if (self) {
+        self.title = NSLocalizedString(@"Whiskey", "Whiskey");
+    }
+    
+    return self;
+}
+
 -(void) viewDidLoad{
     
     [super viewDidLoad];
     
-    int *sliderInt = (int) [self.beerCountSlider value];
-    NSString *thisTitle = @"Whiskey";
-    self.title = [NSString stringWithFormat: NSLocalizedString(@"%@ %u glasses", "Title with current tab and number of glasses"), thisTitle, sliderInt];
+    self.view.backgroundColor = [UIColor colorWithRed:0.992 green:0.992 blue:0.588 alpha:1];
 }
 
 - (void) buttonPressed:(UIButton *)sender;
@@ -63,6 +72,12 @@
     self.resultLabel.text = resultText;
 }
 
+//- (void)sliderValueDidchange:(UISlider*)sender {
+//   NSLog(@"Slider value changed to %f", sender.value);
+//    [self.beerPercentTextField resignFirstResponder];
+    
+    //self.title = [NSString stringWithFormat:NSLocalizedString(@"%@ %u glasses", @"Current tab with slider value"), self.title, numberOfWhiskeyGlassesForEquivalentAlcoholAmount];
+//}
 
 /*
 #pragma mark - Navigation
